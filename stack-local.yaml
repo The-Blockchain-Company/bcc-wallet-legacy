@@ -1,0 +1,30 @@
+resolver: ./bcc-sl.yaml
+packages:
+- .
+- ../bcc-sl/acid-state-exts
+- ../bcc-sl/binary
+- ../bcc-sl/binary/test
+- ../bcc-sl/chain
+- ../bcc-sl/chain/test
+- ../bcc-sl/client
+- ../bcc-sl/cluster
+- ../bcc-sl/core
+- ../bcc-sl/core/test
+- ../bcc-sl/crypto
+- ../bcc-sl/crypto/test
+- ../bcc-sl/db
+- ../bcc-sl/infra
+- ../bcc-sl/lib
+- ../bcc-sl/mnemonic
+- ../bcc-sl/networking
+- ../bcc-sl/node
+- ../bcc-sl/node-ipc
+- ../bcc-sl/util
+- ../bcc-sl/util/test
+- ../bcc-sl/utxo
+- ../bcc-sl/x509
+- ../bcc-sl/db/test/
+- ../bcc-sl/infra/test/
+
+extra-deps:
+- generic-lens-1.1.0.0

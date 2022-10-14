@@ -1,0 +1,35 @@
+resolver: ./bcc-sl.yaml
+packages:
+- .
+
+extra-deps:
+- git: https://github.com/the-blockchain-company/bcc-sl
+  commit: 632769d4480d3b19299d801c9fb39e75d20dd7d9
+  subdirs:
+    - acid-state-exts
+    - binary
+    - binary/test
+    - chain
+    - chain/test
+    - client
+    - cluster
+    - core
+    - core/test
+    - crypto
+    - crypto/test
+    - db
+    - infra
+    - lib
+    - mnemonic
+    - networking
+    - node
+    - node-ipc
+    - util
+    - util/test
+    - utxo
+    - x509
+
+- generic-lens-1.1.0.0
+
+nix:
+  shell-file: nix/stack-shell.nix

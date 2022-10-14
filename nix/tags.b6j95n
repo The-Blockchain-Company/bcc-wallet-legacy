@@ -1,0 +1,1 @@
+fail_stack2nix_check	check-stack2nix.sh	/^fail_stack2nix_check() {$/;"	f

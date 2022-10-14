@@ -1,0 +1,624 @@
+name:                bcc-wallet
+version:             2.0.0
+synopsis:            The Wallet Backend for a Bcc node.
+description:         Please see README.md
+homepage:            https://github.com/the-blockchain-company/bcc-wallet
+author:              TBCO Engineering Team
+maintainer:          operations@iohk.io
+copyright:           2018 TBCO
+license:             MIT
+license-file:        LICENSE
+category:            Web
+build-type:          Simple
+extra-source-files:  README.md
+cabal-version:       >=1.10
+
+library
+  default-language:
+      Haskell2010
+  default-extensions:
+      DataKinds
+      DefaultSignatures
+      FlexibleContexts
+      FlexibleInstances
+      MonadFailDesugaring
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      OverloadedStrings
+      RecordWildCards
+      ScopedTypeVariables
+      TemplateHaskell
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options:
+      -Wall
+      -Werror
+      -Wcompat
+      -fwarn-redundant-constraints
+
+  build-depends:
+      base
+    , acid-state
+    , aeson
+    , aeson-options
+    , aeson-pretty
+    , async
+    , base58-bytestring
+    , beam-core
+    , beam-migrate
+    , beam-sqlite
+    , bifunctors
+    , binary
+    , bytestring
+    , bcc-crypto
+    , bcc-sl
+    , bcc-sl-binary
+    , bcc-sl-chain
+    , bcc-sl-client
+    , bcc-sl-core
+    , bcc-sl-core-test
+    , bcc-sl-crypto
+    , bcc-sl-db
+    , bcc-sl-infra
+    , bcc-sl-mnemonic
+    , bcc-sl-networking
+    , bcc-sl-node
+    , bcc-sl-node-ipc
+    , bcc-sl-util
+    , bcc-sl-utxo
+    , cereal
+    , clock
+    , conduit
+    , containers
+    , cryptonite
+    , data-default
+    , data-default-class
+    , directory
+    , exceptions
+    , filepath
+    , foldl
+    , formatting
+    , generics-sop
+    , http-api-data
+    , http-client
+    , http-types
+    , ixset-typed
+    , lens
+    , memory
+    , mtl
+    , mwc-random
+    , neat-interpolation
+    , optparse-applicative
+    , QuickCheck
+    , reflection
+    , resourcet
+    , retry
+    , safecopy
+    , safe-exceptions
+    , serokell-util
+    , servant
+    , servant-client
+    , servant-client-core
+    , servant-server
+    , servant-swagger
+    , servant-swagger-ui
+    , servant-swagger-ui-core
+    , servant-swagger-ui-redoc
+    , sqlite-simple
+    , sqlite-simple-errors
+    , stm
+    , stm-chans
+    , strict
+    , strict-concurrency
+    , swagger2
+    , tar
+    , text
+    , time
+    , time-units
+    , transformers
+    , universum
+    , unliftio-core
+    , unordered-containers
+    , uuid
+    , vector
+    , wai
+    , wai-middleware-throttle
+    , warp
+    , zlib
+
+  hs-source-dirs:
+      src
+  exposed-modules:
+      Bcc.Wallet.API
+      Bcc.Wallet.API.Indices
+      Bcc.Wallet.API.Internal
+      Bcc.Wallet.API.Internal.Handlers
+      Bcc.Wallet.API.Request
+      Bcc.Wallet.API.Request.Filter
+      Bcc.Wallet.API.Request.Pagination
+      Bcc.Wallet.API.Request.Parameters
+      Bcc.Wallet.API.Request.Sort
+      Bcc.Wallet.API.Response
+      Bcc.Wallet.API.Response.Filter.IxSet
+      Bcc.Wallet.API.Response.JSend
+      Bcc.Wallet.API.Response.Sort.IxSet
+      Bcc.Wallet.API.Types
+      Bcc.Wallet.API.Types.UnitOfMeasure
+      Bcc.Wallet.API.V1
+      Bcc.Wallet.API.V1.Accounts
+      Bcc.Wallet.API.V1.Addresses
+      Bcc.Wallet.API.V1.Errors
+      Bcc.Wallet.API.V1.Generic
+      Bcc.Wallet.API.V1.Handlers
+      Bcc.Wallet.API.V1.Handlers.Accounts
+      Bcc.Wallet.API.V1.Handlers.Addresses
+      Bcc.Wallet.API.V1.Handlers.Info
+      Bcc.Wallet.API.V1.Handlers.Settings
+      Bcc.Wallet.API.V1.Handlers.Transactions
+      Bcc.Wallet.API.V1.Handlers.Wallets
+      Bcc.Wallet.API.V1.Headers
+      Bcc.Wallet.API.V1.Info
+      Bcc.Wallet.API.V1.Parameters
+      Bcc.Wallet.API.V1.ReifyWalletError
+      Bcc.Wallet.API.V1.Settings
+      Bcc.Wallet.API.V1.Swagger
+      Bcc.Wallet.API.V1.Swagger.Example
+      Bcc.Wallet.API.V1.Transactions
+      Bcc.Wallet.API.V1.Types
+      Bcc.Wallet.API.V1.Wallets
+      Bcc.Wallet.Action
+      Bcc.Wallet.Client
+      Bcc.Wallet.Client.Http
+      Bcc.Wallet.Kernel
+      Bcc.Wallet.Kernel.Accounts
+      Bcc.Wallet.Kernel.Actions
+      Bcc.Wallet.Kernel.AddressPool
+      Bcc.Wallet.Kernel.AddressPoolGap
+      Bcc.Wallet.Kernel.Addresses
+      Bcc.Wallet.Kernel.Ed25519Bip44
+      Bcc.Wallet.Kernel.BListener
+      Bcc.Wallet.Kernel.CoinSelection
+      Bcc.Wallet.Kernel.CoinSelection.FromGeneric
+      Bcc.Wallet.Kernel.CoinSelection.Generic
+      Bcc.Wallet.Kernel.CoinSelection.Generic.Fees
+      Bcc.Wallet.Kernel.CoinSelection.Generic.Grouped
+      Bcc.Wallet.Kernel.CoinSelection.Generic.LargestFirst
+      Bcc.Wallet.Kernel.CoinSelection.Generic.Random
+      Bcc.Wallet.Kernel.DB.AcidState
+      Bcc.Wallet.Kernel.DB.BlockContext
+      Bcc.Wallet.Kernel.DB.BlockMeta
+      Bcc.Wallet.Kernel.DB.Compression
+      Bcc.Wallet.Kernel.DB.HdWallet
+      Bcc.Wallet.Kernel.DB.HdRootId
+      Bcc.Wallet.Kernel.DB.HdWallet.Create
+      Bcc.Wallet.Kernel.DB.HdWallet.Delete
+      Bcc.Wallet.Kernel.DB.HdWallet.Derivation
+      Bcc.Wallet.Kernel.DB.HdWallet.Read
+      Bcc.Wallet.Kernel.DB.HdWallet.Update
+      Bcc.Wallet.Kernel.DB.InDb
+      Bcc.Wallet.Kernel.DB.Read
+      Bcc.Wallet.Kernel.DB.Resolved
+      Bcc.Wallet.Kernel.DB.Spec
+      Bcc.Wallet.Kernel.DB.Spec.Pending
+      Bcc.Wallet.Kernel.DB.Spec.Read
+      Bcc.Wallet.Kernel.DB.Spec.Update
+      Bcc.Wallet.Kernel.DB.Sqlite
+      Bcc.Wallet.Kernel.DB.TxMeta
+      Bcc.Wallet.Kernel.DB.TxMeta.Types
+      Bcc.Wallet.Kernel.DB.Updates
+      Bcc.Wallet.Kernel.DB.Util.AcidState
+      Bcc.Wallet.Kernel.DB.Util.IxSet
+      Bcc.Wallet.Kernel.DB.Util.Zoomable
+      Bcc.Wallet.Kernel.Diffusion
+      Bcc.Wallet.Kernel.Internal
+      Bcc.Wallet.Kernel.Invariants
+      Bcc.Wallet.Kernel.Keystore
+      Bcc.Wallet.Kernel.Migration
+      Bcc.Wallet.Kernel.Mode
+      Bcc.Wallet.Kernel.NodeStateAdaptor
+      Bcc.Wallet.Kernel.Pending
+      Bcc.Wallet.Kernel.Prefiltering
+      Bcc.Wallet.Kernel.Read
+      Bcc.Wallet.Kernel.Restore
+      Bcc.Wallet.Kernel.Submission
+      Bcc.Wallet.Kernel.Submission.Worker
+      Bcc.Wallet.Kernel.Transactions
+      Bcc.Wallet.Kernel.Types
+      Bcc.Wallet.Kernel.Util.Core
+      Bcc.Wallet.Kernel.Util.NonEmptyMap
+      Bcc.Wallet.Kernel.Util.Strict
+      Bcc.Wallet.Kernel.Util.StrictList
+      Bcc.Wallet.Kernel.Util.StrictNonEmpty
+      Bcc.Wallet.Kernel.Util.StrictStateT
+      Bcc.Wallet.Kernel.Wallets
+      Bcc.Wallet.NodeProxy
+      Bcc.Wallet.Server
+      Bcc.Wallet.Server.CLI
+      Bcc.Wallet.Server.Middlewares
+      Bcc.Wallet.Server.Plugins
+      Bcc.Wallet.Server.Plugins.AcidState
+      Bcc.Wallet.TypeLits
+      Bcc.Wallet.Types.UtxoStatistics
+      Bcc.Wallet.Util
+      Bcc.Wallet.WalletLayer
+      Bcc.Wallet.WalletLayer.ExecutionTimeLimit
+      Bcc.Wallet.WalletLayer.Kernel
+      Bcc.Wallet.WalletLayer.Kernel.Accounts
+      Bcc.Wallet.WalletLayer.Kernel.Active
+      Bcc.Wallet.WalletLayer.Kernel.Addresses
+      Bcc.Wallet.WalletLayer.Kernel.Conv
+      Bcc.Wallet.WalletLayer.Kernel.Internal
+      Bcc.Wallet.WalletLayer.Kernel.Transactions
+      Bcc.Wallet.WalletLayer.Kernel.Wallets
+  other-modules:
+      Paths_cardano_wallet
+
+
+
+executable bcc-wallet-server
+  default-language:
+      Haskell2010
+  default-extensions:
+      DataKinds
+      DefaultSignatures
+      FlexibleContexts
+      FlexibleInstances
+      MonadFailDesugaring
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      OverloadedStrings
+      RecordWildCards
+      ScopedTypeVariables
+      TemplateHaskell
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options:
+      -threaded -rtsopts
+      -Wall
+      -O2
+
+  build-depends:
+      base
+    , bcc-sl
+    , bcc-sl-util
+    , bcc-wallet
+    , universum
+
+  hs-source-dirs:
+      app/server
+  main-is:
+      Main.hs
+
+
+executable bcc-wallet-generate-swagger
+  default-language:
+      Haskell2010
+  default-extensions:
+      FlexibleContexts
+      MonadFailDesugaring
+      NoImplicitPrelude
+      OverloadedStrings
+      RecordWildCards
+      ScopedTypeVariables
+      TypeApplications
+      TypeOperators
+  ghc-options:
+      -threaded -rtsopts
+      -Wall
+      -fno-warn-orphans
+      -O2
+
+  build-depends:
+      base
+    , aeson
+    , bytestring
+    , bcc-sl-chain
+    , bcc-sl-util
+    , bcc-wallet
+    , optparse-applicative
+    , swagger2
+    , universum >= 0.1.11
+
+  hs-source-dirs:
+      app/generate-swagger
+  main-is:
+      Main.hs
+
+
+test-suite unit
+  default-language:
+      Haskell2010
+  default-extensions:
+      BangPatterns
+      ConstraintKinds
+      DataKinds
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      GADTs
+      InstanceSigs
+      LambdaCase
+      MultiParamTypeClasses
+      MultiWayIf
+      NoImplicitPrelude
+      OverloadedStrings
+      RankNTypes
+      RecordWildCards
+      ScopedTypeVariables
+      StandaloneDeriving
+      TemplateHaskell
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+  other-extensions:
+      DeriveAnyClass
+      GeneralizedNewtypeDeriving
+      UndecidableInstances
+  ghc-options:
+      -threaded -rtsopts
+      -Wall
+      -Werror
+      -O2
+
+  build-depends:
+      base
+    , acid-state
+    , aeson
+    , bytestring
+    , bcc-crypto
+    , bcc-sl
+    , bcc-sl-binary
+    , bcc-sl-chain
+    , bcc-sl-chain-test
+    , bcc-sl-client
+    , bcc-sl-core
+    , bcc-sl-core-test
+    , bcc-sl-crypto
+    , bcc-sl-db
+    , bcc-sl-infra
+    , bcc-sl-mnemonic
+    , bcc-sl-util
+    , bcc-sl-util-test
+    , bcc-sl-utxo
+    , bcc-wallet
+    , cereal
+    , conduit
+    , containers
+    , cryptonite
+    , data-default
+    , directory
+    , formatting
+    , hedgehog
+    , hspec
+    , hspec-core
+    , insert-ordered-containers
+    , lens
+    , mtl
+    , normaldistribution
+    , QuickCheck
+    , quickcheck-instances
+    , random
+    , safe-exceptions
+    , safecopy
+    , serokell-util
+    , servant
+    , servant-server
+    , servant-swagger
+    , string-conv
+    , swagger2
+    , tabl
+    , text
+    , time
+    , time-units
+    , universum
+    , unordered-containers
+    , vector
+
+  type:
+     exitcode-stdio-1.0
+  hs-source-dirs:
+      test/unit
+  main-is:
+      Main.hs
+  other-modules:
+      API.MarshallingSpec
+      API.RequestSpec
+      API.SwaggerSpec
+      Arbitrary
+      Golden.APILayout
+      Golden.APIV1Types
+      Golden.Ed25519Addresses
+      Golden.WalletError
+      Test.Infrastructure.Generator
+      Test.Infrastructure.Genesis
+      Test.Spec.Accounts
+      Test.Spec.AddressPool
+      Test.Spec.AddressPoolGap
+      Test.Spec.Addresses
+      Test.Spec.BlockMetaScenarios
+      Test.Spec.CoinSelection
+      Test.Spec.CoinSelection.Generators
+      Test.Spec.DeltaCompression
+      Test.Spec.Ed25519Bip44
+      Test.Spec.Fixture
+      Test.Spec.GetTransactions
+      Test.Spec.Kernel
+      Test.Spec.Keystore
+      Test.Spec.Models
+      Test.Spec.NewPayment
+      Test.Spec.Submission
+      Test.Spec.Translation
+      Test.Spec.TxMetaScenarios
+      Test.Spec.TxMetaStorage
+      Test.Spec.WalletWorker
+      Test.Spec.Wallets
+      UTxO.ToCardano.Interpreter
+      Util.Buildable
+      Util.Buildable.Hspec
+      Util.Buildable.QuickCheck
+      Util.Prefiltering
+      Wallet.Abstract
+      Wallet.Basic
+      Wallet.Incremental
+      Wallet.Inductive
+      Wallet.Inductive.Bcc
+      Wallet.Inductive.ExtWalletEvent
+      Wallet.Inductive.Generator
+      Wallet.Inductive.History
+      Wallet.Inductive.Interpreter
+      Wallet.Inductive.Invariants
+      Wallet.Inductive.Validation
+      Wallet.Prefiltered
+      Wallet.Rollback.Basic
+      Wallet.Rollback.Full
+
+      -- can be factored into a library later
+      Servant.JsendCompliance
+
+
+test-suite nightly
+  default-language:
+      Haskell2010
+  default-extensions:
+      BangPatterns
+      ConstraintKinds
+      DataKinds
+      DeriveGeneric
+      FlexibleContexts
+      FlexibleInstances
+      GADTs
+      InstanceSigs
+      LambdaCase
+      MultiParamTypeClasses
+      MultiWayIf
+      NoImplicitPrelude
+      OverloadedStrings
+      RankNTypes
+      RecordWildCards
+      ScopedTypeVariables
+      StandaloneDeriving
+      TemplateHaskell
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+  ghc-options:
+      -threaded -rtsopts
+      -Wall
+      -Werror
+      -O2
+
+  build-depends:
+      base
+    , async
+    , bcc-sl-chain
+    , bcc-sl-core
+    , bcc-wallet
+    , formatting
+    , hspec
+    , hspec-core
+    , QuickCheck
+    , safe-exceptions
+    , serokell-util
+    , text
+    , universum
+
+  type:
+     exitcode-stdio-1.0
+  hs-source-dirs:
+      test/nightly
+  main-is:
+      Main.hs
+  other-modules:
+      TxMetaStorage
+
+
+test-suite integration
+  default-language:
+      Haskell2010
+  default-extensions:
+      ConstraintKinds
+      DataKinds
+      DeriveGeneric
+      DerivingStrategies
+      FlexibleContexts
+      FlexibleInstances
+      GeneralizedNewtypeDeriving
+      LambdaCase
+      MultiParamTypeClasses
+      NoImplicitPrelude
+      NoMonomorphismRestriction
+      OverloadedLabels
+      OverloadedStrings
+      QuasiQuotes
+      ScopedTypeVariables
+      TupleSections
+      TypeApplications
+      TypeFamilies
+      TypeOperators
+      UndecidableInstances
+  ghc-options:
+      -threaded -rtsopts
+      -Wall
+      -Werror
+      -O2
+
+  build-depends:
+      base
+    , QuickCheck
+    , servant-client
+    , aeson
+    , aeson-qq
+    , async
+    , bytestring
+    , bcc-sl
+    , bcc-sl-chain
+    , bcc-sl-client
+    , bcc-sl-cluster
+    , bcc-sl-core
+    , bcc-sl-crypto
+    , bcc-sl-mnemonic
+    , bcc-sl-util
+    , bcc-wallet
+    , containers
+    , cryptonite
+    , directory
+    , data-default
+    , filepath
+    , formatting
+    , generic-lens
+    , hspec
+    , hspec-core
+    , hspec-expectations-lifted
+    , http-api-data
+    , http-client
+    , http-types
+    , memory
+    , optparse-applicative
+    , servant-client-core
+    , template-haskell
+    , text
+    , universum
+
+  type:
+     exitcode-stdio-1.0
+  hs-source-dirs:
+      test/integration
+  main-is:
+      Main.hs
+  other-modules:
+      Test.Integration.Documentation
+      Test.Integration.Framework.Cluster
+      Test.Integration.Framework.DSL
+      Test.Integration.Framework.Request
+      Test.Integration.Framework.Scenario
+      Test.Integration.Scenario.Accounts
+      Test.Integration.Scenario.Addresses
+      Test.Integration.Scenario.EosWallets
+      Test.Integration.Scenario.Transactions
+      Test.Integration.Scenario.Wallets
+      Test.Integration.Scenario.Node
